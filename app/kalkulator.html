@@ -1,0 +1,64 @@
+{extends file="../templates/main.html"}
+
+{block name=footer}Tutaj powinna być stopka stony{/block}
+
+{block name=content}
+
+<h3>Kalkulator kredytowy</h2>
+
+
+<form class="pure-form pure-form-stacked" action="{$app_url}/app/kalkulator.php" method="post">
+	<fieldset>
+		<label for="Kwota_kredytu">Kwota kredytu</label>
+		<input id="kwota_kredytu" type="text" placeholder="" name="kwota_kredytu" value="{$form['kwota_kredytu']}">
+		
+		<label for="lata_splaty">Lata spłaty kredytu</label>
+		<input id="lata_splaty" type="text" placeholder="" name="lata_splaty" value="{$form['lata_splaty']}">
+		
+		<label for="oprocentowanie">Aktualne oprocentowanie</label>
+		<input id="oprocentowanie" type="text" placeholder="" name="oprocentowanie" value="{$form['oprocentowanie']}">
+		
+	</fieldset>
+	<button type="submit" class="pure-button pure-button-primary">Oblicz</button>
+</form>
+
+<div class="messages">
+
+{* wyświeltenie listy błędów, jeśli istnieją *}
+{if isset($messages)}
+	{if count($messages) > 0} 
+		<h4>Wystąpiły błędy: </h4>
+		<ol class="err">
+		{foreach  $messages as $msg}
+		{strip}
+			<li>{$msg}</li>
+		{/strip}
+		{/foreach}
+		</ol>
+	{/if}
+{/if}
+
+{* wyświeltenie listy informacji, jeśli istnieją *}
+{if isset($infos)}
+	{if count($infos) > 0} 
+		<h4>Informacje: </h4>
+		<ol class="inf">
+		{foreach  $infos as $msg}
+		{strip}
+			<li>{$msg}</li>
+		{/strip}
+		{/foreach}
+		</ol>
+	{/if}
+{/if}
+
+{if isset($wynik)}
+    <h4>Wynik</h4>
+    <p class="res">
+        {$wynik|round:2}
+    </p>
+{/if}
+
+</div>
+
+{/block}
