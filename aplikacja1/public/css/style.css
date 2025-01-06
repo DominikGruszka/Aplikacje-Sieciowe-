@@ -1,0 +1,830 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.container1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Navbar */
+.navbar {
+    background: #2c3e50;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+}
+
+.navbar .logo {
+    margin-right: auto; 
+}
+
+.navbar .logo img {
+    height: 50px;
+    width: auto;
+}
+
+.navbar .center-menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1; 
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .center-menu li {
+    margin: 0 15px;
+}
+
+.navbar .center-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.navbar .center-menu a:hover {
+    color: #1abc9c;
+}
+
+.navbar .user-menu {
+    position: relative;
+    margin-left: auto; 
+}
+
+.navbar .user-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.navbar .user-menu .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    min-width: 150px;
+    z-index: 10;
+    padding-right: 10px;
+}
+
+.navbar .user-menu:hover .dropdown {
+    display: block;
+}
+
+.navbar .user-menu .dropdown a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.navbar .user-menu .dropdown a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Pierwszy blok na stonie głównej */
+.hero {
+    background: #1abc9c;
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.hero .btn-primary {
+    background: #fff;
+    color: #1abc9c;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.hero .btn-primary:hover {
+    background: #16a085;
+    color: #fff;
+}
+
+/* Sekcja o nas na stronie głównej */
+.about {
+    padding: 50px 20px;
+    text-align: center;
+    background: #ecf0f1;
+}
+
+.about h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.about p {
+    font-size: 18px;
+}
+
+/* Sekcja usługi na stronie głównej */
+.services {
+    padding: 50px 20px;
+}
+
+.services h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.services .grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    text-align: center;
+}
+
+.service-item {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item i {
+    font-size: 40px;
+    color: #1abc9c;
+    margin-bottom: 10px;
+}
+
+.service-item h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.service-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Sekcja kontakt na stronie głównej */
+.contact {
+    padding: 10px 20px;
+    text-align: center;
+    background: #ecf0f1;
+}
+
+.contact h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.contactp {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+/* Footer */
+.footer {
+    background: #2c3e50;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+/* LoginView */
+.login-section {
+    padding: 30px 30px;
+    text-align: center;
+}
+
+.login-section h4 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #1abc9c; 
+}
+
+#login form {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 60px;
+    margin-top: 10px;
+}
+
+#login .pure-control-group {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#login label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#login input[type="text"],
+#login input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#login input[type="text"]:focus,
+#login input[type="password"]:focus {
+    border-color: #1abc9c;
+    outline: none;
+    box-shadow: 0 0 5px rgba(26, 188, 156, 0.5);
+}
+
+#login .pure-button {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    background: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#login .pure-button:hover {
+    background: #16a085;
+}
+.pure-button-secondary {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.pure-button-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Błędy, powiadomienia */ 
+.alert {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 5px;
+}
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Komunikaty */
+.notifications {
+    position: fixed; 
+    bottom: 50px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    z-index: 1000; 
+    width: auto;
+    max-width: 80%;
+    text-align: center;
+}
+
+.notification-box {
+    padding: 15px 20px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Typy komunikatów */
+.notification-info {
+    background-color: #17a2b8; 
+}
+
+.notification-warning {
+    background-color: #ffc107; 
+    color: #000; 
+}
+
+.notification-error {
+    background-color: #dc3545; 
+}
+
+/* RegisterView */ 
+.register-section {
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 600px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.register-section h4 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #1abc9c; 
+    text-align: center;
+}
+
+.pure-control-group {
+    margin-bottom: 20px; 
+}
+
+.pure-control-group label {
+    display: inline-block; 
+    text-align: center; 
+    font-weight: bold;
+    margin-right: 200px; 
+    width: auto; 
+}
+
+.pure-control-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.pure-controls {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.pure-button-primary {
+    background-color: #1f8dd6;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    margin-right: 0; 
+}
+
+.pure-button-primary:hover {
+    background-color: #155a9c;
+}
+
+/* RentalsView zdjęcia */
+.rental-cars h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #1abc9c; 
+    text-align: center;
+}
+.card {
+    width: 400px;
+    border-radius: 8px;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden; 
+}
+
+.card .image-box {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    position: relative; 
+}
+
+.card .image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 90%;
+    border-radius: inherit;
+    transition: 0.5s ease-in-out;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    border: 2px solid white;
+    border-radius: inherit;
+    opacity: 0;
+    transition: 0.4s ease-in-out;
+}
+
+.card:hover img {
+    filter: grayscale(1) brightness(0.4);
+}
+
+.card:hover::after {
+    opacity: 1;
+    top: 20px;
+    right: 20px;
+    bottom: 20px;
+    left: 20px;
+}
+
+/* RentalsView Ukrywanie tekstu w normalnym stanie */
+.content10 {
+    width: 80%;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: transparent; 
+    opacity: 0; 
+    transition: opacity 0.3s ease, color 0.3s ease; 
+}
+
+/* RenatalsView Pokazywanie tekstu po najechaniu */
+.card:hover .content10 {
+    opacity: 1; 
+    color: white; 
+}
+
+/* ProfileView */
+.profile-section {
+    padding: 30px 30px;
+    text-align: center;
+}
+
+.profile-section h4 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #1abc9c; 
+}
+
+#profile form {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 60px;
+    margin-top: 10px;
+}
+
+#profile .pure-control-group {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#profile label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#profile input[type="text"],
+#profile input[type="password"],
+#profile input[type="email"],
+#profile input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#profile input[type="text"]:focus,
+#profile input[type="password"]:focus,
+#profile input[type="email"]:focus,
+#profile input[type="tel"]:focus {
+    border-color: #1abc9c;
+    outline: none;
+    box-shadow: 0 0 5px rgba(26, 188, 156, 0.5);
+}
+
+#profile .pure-button {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    background: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#profile .pure-button:hover {
+    background: #16a085;
+}
+
+/* ReportsView */
+.vehicle-section {
+    padding: 30px 30px;
+    text-align: center;
+}
+
+.vehicle-section h4 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #1abc9c;
+}
+
+#vehicle form {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 60px;
+    margin-top: 10px;
+}
+
+#vehicle .pure-control-group {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#vehicle label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#vehicle input[type="text"],
+#vehicle input[type="number"] {
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 0px;
+    margin-right: 165px;  
+}
+
+#vehicle input[type="text"]:focus,
+#vehicle input[type="number"]:focus {
+    border-color: #1abc9c;
+    outline: none;
+    box-shadow: 0 0 5px rgba(26, 188, 156, 0.5);
+}
+
+#vehicle .pure-button {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    background: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    transform: translateX(-165px); 
+}
+
+#vehicle .pure-button:hover {
+    background: #16a085;
+}
+
+.vehicles-list-section {
+    padding: 30px 30px;
+    text-align: center;
+}
+
+/* VehiclesListView */
+.vehicles-list-section h4 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #1abc9c;
+}
+
+#vehicles-list table {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    background: #f9f9f9;
+    border-collapse: collapse;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+#vehicles-list table thead {
+    background: #1abc9c;
+    color: white;
+    text-align: left;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+#vehicles-list table th,
+#vehicles-list table td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+#vehicles-list table tr:last-child td {
+    border-bottom: none;
+}
+
+#vehicles-list table tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+#vehicles-list table tr:hover {
+    background: rgba(26, 188, 156, 0.2);
+}
+
+#vehicles-list input[type="text"],
+#vehicles-list input[type="number"] {
+    width: 90%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: left;
+}
+
+#vehicles-list input[type="text"]:focus,
+#vehicles-list input[type="number"]:focus {
+    border-color: #1abc9c;
+    outline: none;
+    box-shadow: 0 0 5px rgba(26, 188, 156, 0.5);
+}
+
+#vehicles-list .pure-button {
+    display: inline-block;
+    padding: 8px 20px;
+    background: #3388ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin: 5px;
+}
+
+#vehicles-list .pure-button:hover {
+    background: #3355ff;
+}
+
+/* AdminView */
+.admin-panel-section h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #1abc9c;
+}
+
+.admin-panel-section h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #2c3e50;
+}
+
+#admin-panel table {
+    width: 90%; 
+    max-width: 1300px;
+    margin: 20px auto 20px -5%; 
+    background: #f9f9f9;
+    border-collapse: collapse;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+#admin-panel table thead {
+    background: #1abc9c;
+    color: white;
+    text-align: left;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+#admin-panel table th,
+#admin-panel table td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+#admin-panel table tr:last-child td {
+    border-bottom: none;
+}
+
+#admin-panel table tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+#admin-panel table tr:hover {
+    background: rgba(26, 188, 156, 0.2);
+}
+
+#admin-panel select {
+    width: 90%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#admin-panel select:focus {
+    border-color: #1abc9c;
+    outline: none;
+    box-shadow: 0 0 5px rgba(26, 188, 156, 0.5);
+}
+
+#admin-panel .pure-button {
+    display: inline-block;
+    padding: 8px 20px;
+    background: #3388ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin: 5px;
+}
+
+#admin-panel .pure-button:hover {
+    background: #3355ff;
+}
+
+#admin-panel .pure-button-secondary {
+    background: #e74c3c;
+    color: white;
+}
+
+#admin-panel .pure-button-secondary:hover {
+    background: #c0392b;
+}
+
+#admin-panel .pure-button-error{
+    background: #e74c3c;
+    color: white;
+}
+
+#admin-panel .pure-button-error:hover {
+    background: #c0392b;
+}
+
+.admin-panel-section .container {
+    padding: 20px;
+}
+
+.admin-panel-section .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
