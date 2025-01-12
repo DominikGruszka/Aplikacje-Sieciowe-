@@ -26,7 +26,7 @@
             </ul>
 
             <!-- Menu użytkownika (rozwijane) -->
-            <ul class="user-menu">
+           <ul class="user-menu">
     {if isset($user_logged_in) && $user_logged_in}
         <li class="user-menu">
             <a href="#">{$user_name}</a>
@@ -36,6 +36,12 @@
                 {if isset($user_is_admin) && $user_is_admin}
                     <li><a href="{$conf->action_root}adminPanel">Panel Administratora</a></li>
                 {/if}
+                {if isset($user_is_office_worker) && $user_is_office_worker}
+                    <li><a href="{$conf->action_root}officePanel">Panel Biurowy</a></li>
+                {/if}
+                {if isset($user_is_workshop_worker) && $user_is_workshop_worker}
+                    <li><a href="{$conf->action_root}workshopPanel">Panel Warsztatowy</a></li>
+                {/if}
                 <li><a href="{$conf->action_root}logout">Wyloguj się</a></li>
             </ul>
         </li>
@@ -43,6 +49,9 @@
         <li class="login"><a href="{$conf->action_root}login">Zaloguj się</a></li>
     {/if}
 </ul>
+
+
+
 
         </nav>
     </header>

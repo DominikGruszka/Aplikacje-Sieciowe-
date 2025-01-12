@@ -30,7 +30,7 @@
             <div class="grid">
                 
                 <div class="service-item">
-                    <a href="{$conf->action_root}login" style="text-decoration: none; color: inherit;">
+                    <a href="{$conf->action_root}vehicles" style="text-decoration: none; color: inherit;">
                         <i class="fas fa-oil-can"></i>
                     <h3>Naprawy mechaniczne</h3>
                         <p>Zgłoś swój samochód do warsztatu.</p>

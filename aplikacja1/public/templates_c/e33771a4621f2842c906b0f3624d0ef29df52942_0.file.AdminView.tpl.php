@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-01-06 11:37:27
+/* Smarty version 4.3.4, created on 2025-01-07 22:07:15
   from 'C:\xampp\htdocs\aplikacja1\app\views\AdminView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_677bb26702daf5_34352664',
+  'unifunc' => 'content_677d9783bf1107_02771475',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e33771a4621f2842c906b0f3624d0ef29df52942' => 
     array (
       0 => 'C:\\xampp\\htdocs\\aplikacja1\\app\\views\\AdminView.tpl',
-      1 => 1736159590,
+      1 => 1736283947,
       2 => 'file',
     ),
   ),
@@ -20,30 +20,30 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_677bb26702daf5_34352664 (Smarty_Internal_Template $_smarty_tpl) {
+function content_677d9783bf1107_02771475 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_525772651677bb266f316e7_27287889', "title");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1287941079677d9783bb6783_61585182', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_515601912677bb266f35569_80820292', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_333280836677d9783bca003_42369281', "content");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "main.tpl");
 }
 /* {block "title"} */
-class Block_525772651677bb266f316e7_27287889 extends Smarty_Internal_Block
+class Block_1287941079677d9783bb6783_61585182 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'title' => 
   array (
-    0 => 'Block_525772651677bb266f316e7_27287889',
+    0 => 'Block_1287941079677d9783bb6783_61585182',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -53,12 +53,12 @@ Panel Administratora<?php
 }
 /* {/block "title"} */
 /* {block "content"} */
-class Block_515601912677bb266f35569_80820292 extends Smarty_Internal_Block
+class Block_333280836677d9783bca003_42369281 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_515601912677bb266f35569_80820292',
+    0 => 'Block_333280836677d9783bca003_42369281',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -104,26 +104,25 @@ echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['user']->value['created_
                     <td>
                         <form method="post" action="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 assignRole">
-                            <select name="role_id">
-                                <?php
+    <select name="role_id" required>
+        <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['roles']->value, 'role');
 $_smarty_tpl->tpl_vars['role']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['role']->value) {
 $_smarty_tpl->tpl_vars['role']->do_else = false;
 ?>
-                                <option value="<?php echo $_smarty_tpl->tpl_vars['role']->value['id_role'];?>
-">
-                                    <?php echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['role']->value['role_name'], ENT_QUOTES, 'UTF-8', true);?>
-
-                                </option>
-                                <?php
+        <option value="<?php echo $_smarty_tpl->tpl_vars['role']->value['id_role'];?>
+"><?php echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['role']->value['role_name'], ENT_QUOTES, 'UTF-8', true);?>
+</option>
+        <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                            </select>
-                            <input type="hidden" name="user_id" value="<?php echo $_smarty_tpl->tpl_vars['user']->value['id_users'];?>
+    </select>
+    <input type="hidden" name="user_id" value="<?php echo $_smarty_tpl->tpl_vars['user']->value['id_users'];?>
 ">
-                            <button type="submit" class="pure-button pure-button-primary">Przypisz</button>
-                        </form>
+    <button type="submit" class="pure-button pure-button-primary">Przypisz</button>
+</form>
+
                         <?php if ((isset($_smarty_tpl->tpl_vars['user']->value['user_role_id']))) {?>
                         <form method="post" action="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 removeRole">

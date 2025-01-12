@@ -30,16 +30,15 @@
                     <td>{if isset($user.created_at)}{$user.created_at|date_format:"%Y-%m-%d %H:%M:%S"}{else}-{/if}</td>
                     <td>
                         <form method="post" action="{$conf->action_root}assignRole">
-                            <select name="role_id">
-                                {foreach from=$roles item=role}
-                                <option value="{$role.id_role}">
-                                    {$role.role_name|escape}
-                                </option>
-                                {/foreach}
-                            </select>
-                            <input type="hidden" name="user_id" value="{$user.id_users}">
-                            <button type="submit" class="pure-button pure-button-primary">Przypisz</button>
-                        </form>
+    <select name="role_id" required>
+        {foreach from=$roles item=role}
+        <option value="{$role.id_role}">{$role.role_name|escape}</option>
+        {/foreach}
+    </select>
+    <input type="hidden" name="user_id" value="{$user.id_users}">
+    <button type="submit" class="pure-button pure-button-primary">Przypisz</button>
+</form>
+
                         {if isset($user.user_role_id)}
                         <form method="post" action="{$conf->action_root}removeRole">
                             <input type="hidden" name="user_role_id" value="{$user.user_role_id}">

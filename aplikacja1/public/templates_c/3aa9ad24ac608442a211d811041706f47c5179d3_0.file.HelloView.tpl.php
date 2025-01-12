@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-01-05 15:51:40
+/* Smarty version 4.3.4, created on 2025-01-09 13:48:08
   from 'C:\xampp\htdocs\aplikacja1\app\views\HelloView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_677a9c7c070f02_46456488',
+  'unifunc' => 'content_677fc588969175_36803899',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3aa9ad24ac608442a211d811041706f47c5179d3' => 
     array (
       0 => 'C:\\xampp\\htdocs\\aplikacja1\\app\\views\\HelloView.tpl',
-      1 => 1736088697,
+      1 => 1736426526,
       2 => 'file',
     ),
   ),
@@ -20,30 +20,30 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_677a9c7c070f02_46456488 (Smarty_Internal_Template $_smarty_tpl) {
+function content_677fc588969175_36803899 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1379559855677a9c7c049e09_70282704', "title");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_818073796677fc58856d804_64394190', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1566735562677a9c7c05d684_01396846', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_368356893677fc588571690_51269728', "content");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "main.tpl");
 }
 /* {block "title"} */
-class Block_1379559855677a9c7c049e09_70282704 extends Smarty_Internal_Block
+class Block_818073796677fc58856d804_64394190 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'title' => 
   array (
-    0 => 'Block_1379559855677a9c7c049e09_70282704',
+    0 => 'Block_818073796677fc58856d804_64394190',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -53,12 +53,12 @@ Strona główna<?php
 }
 /* {/block "title"} */
 /* {block "content"} */
-class Block_1566735562677a9c7c05d684_01396846 extends Smarty_Internal_Block
+class Block_368356893677fc588571690_51269728 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_1566735562677a9c7c05d684_01396846',
+    0 => 'Block_368356893677fc588571690_51269728',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -94,7 +94,7 @@ services" class="btn-primary">Sprawdź Usługi</a>
                 
                 <div class="service-item">
                     <a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
-login" style="text-decoration: none; color: inherit;">
+vehicles" style="text-decoration: none; color: inherit;">
                         <i class="fas fa-oil-can"></i>
                     <h3>Naprawy mechaniczne</h3>
                         <p>Zgłoś swój samochód do warsztatu.</p>

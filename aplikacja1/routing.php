@@ -32,19 +32,40 @@ Utils::addRoute('vehiclesList',         'VehiclesListCtrl');
 // Administrator
 Utils::addRoute('adminPanel',           'AdminCtrl');
 
-// Wyświetlenie pojazdów użytkowników przez administratora
-Utils::addRoute('userVehicles',         'AdminCtrl');
+// Przypisywanie ról przez Administratora 
+Utils::addRoute('assignRole',           'AdminCtrl');
+
+// Usuwanie roli przez Administratora
+Utils::addRoute('removeRole',           'AdminCtrl');
 
 // Możliwość usunięcia użytkowników przez administratora
 Utils::addRoute('deleteUser',           'AdminCtrl');
 
+// Wyświetlanie pojazdów użytkowników przez administratora 
+Utils::addRoute('userVehicles',         'UserVehiclesCtrl');
+
+// Panel biurowy dla użytkowniów z rolą pracownik_biurowy
+Utils::addRoute('officePanel',          'OfficePanelCtrl');
+
+// Panel do zamawiania części przez pracownik_biurowy
+Utils::addRoute('orderPartsOverview',   'OrderPartsOverviewCtrl');
+
+// Panel do rozlczania pojazdów przez pracownik_biurowy
+Utils::addRoute('settleVehicles',       'SettleVehiclesCtrl');
+
+// Panel finalizacji + otrzymania całkowitej kowty za naprawę 
+Utils::addRoute('finalizeSettlement', 'FinalizeSettlementCtrl');
+
+// Panel warsztatowy dla użytkowników z rolą pracownik_warsztatowy
+Utils::addRoute('workshopPanel',        'WorkshopPanelCtrl');
+
+// Panel do wpisywania części potrzebnych od wymiany przez pracownik_warsztatowy 
+Utils::addRoute('partsDemand',          'PartsDemandCtrl');
+
+// Usuwanie części z tabeli przez pracownik_warsztatowy
+Utils::addRoute('deletePart',           'PartsDemandCtrl');
 
 
-
-
-// Trasy warsztatu
-//Utils::addRoute('warsztat',             'WorkShopCtrl');
-//Utils::addRoute('warsztat/czesci',      'WorkShopCtrl');
 
 // Trasy biurowe
 //Utils::addRoute('biuro',                'OfficeCtrl');

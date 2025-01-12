@@ -106,34 +106,11 @@ class AdminCtrl {
 
             App::getMessages()->addMessage(new Message('Rola została usunięta.', Message::INFO));
         } catch (\PDOException $e) {
-            App::getMessages()->addMessage(new Message('Wystąpił błąd podczas usuwania roli.', Message::ERROR));
+            App::getMessages()->addMessage(new Message('Wystąpił błąd podczas usuwania roli: ' . $e->getMessage(), Message::ERROR));
         }
 
         header("Location: adminPanel");
         exit();
-    }
-
-    public function action_userVehicles() {
-        $user_id = getFromRequest('user_id');
-
-        if (!$user_id) {
-            App::getMessages()->addMessage(new Message('Nie podano użytkownika.', Message::ERROR));
-            header("Location: adminPanel");
-            exit();
-        }
-
-        try {
-            $vehicles = App::getDB()->select("vehicles", "*", [
-                "user_id" => $user_id
-            ]);
-
-            App::getSmarty()->assign('vehicles', $vehicles);
-            App::getSmarty()->display('UserVehiclesView.tpl'); 
-        } catch (\PDOException $e) {
-            App::getMessages()->addMessage(new Message('Wystąpił błąd podczas ładowania pojazdów.', Message::ERROR));
-            header("Location: adminPanel");
-            exit();
-        }
     }
 
     public function action_deleteUser() {
