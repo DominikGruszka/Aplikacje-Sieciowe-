@@ -83,4 +83,77 @@ class ProfileCtrl {
             exit();
         }
     }
+
+    public function action_profileSave() {
+    $user_id = SessionUtils::load('user_id', true);
+
+    if (!$user_id) {
+        App::getMessages()->addMessage(new Message('Brak zalogowanego użytkownika.', Message::ERROR));
+        header("Location: login");
+        exit();
+    }
+
+    // Pobierz dane z formularza
+    $this->form->email = trim(getFromRequest('email'));
+    $this->form->lastname = trim(getFromRequest('lastname'));
+    $this->form->phone = trim(getFromRequest('phone'));
+    $new_password = trim(getFromRequest('new_password'));
+    $repeat_new_password = trim(getFromRequest('repeat_new_password'));
+
+    // Walidacja danych
+    if (empty($this->form->email) || empty($this->form->lastname)) {
+        App::getMessages()->addMessage(new Message('Email i nazwisko są wymagane.', Message::ERROR));
+        App::getSmarty()->assign('form', $this->form);
+        App::getSmarty()->display('ProfileView.tpl');
+        return;
+    }
+
+    if (!empty($this->form->phone) && (!ctype_digit($this->form->phone) || strlen($this->form->phone) != 9)) {
+        App::getMessages()->addMessage(new Message('Numer telefonu musi zawierać dokładnie 9 cyfr.', Message::ERROR));
+        App::getSmarty()->assign('form', $this->form);
+        App::getSmarty()->display('ProfileView.tpl');
+        return;
+    }
+
+    if (!empty($new_password) || !empty($repeat_new_password)) {
+        if ($new_password !== $repeat_new_password) {
+            App::getMessages()->addMessage(new Message('Nowe hasło i jego powtórzenie muszą być identyczne.', Message::ERROR));
+            App::getSmarty()->assign('form', $this->form);
+            App::getSmarty()->display('ProfileView.tpl');
+            return;
+        }
+
+        if (strlen($new_password) < 8) {
+            App::getMessages()->addMessage(new Message('Nowe hasło musi mieć co najmniej 8 znaków.', Message::ERROR));
+            App::getSmarty()->assign('form', $this->form);
+            App::getSmarty()->display('ProfileView.tpl');
+            return;
+        }
+    }
+
+    try {
+        // Zapis do bazy danych
+        $update_data = [
+            "email" => $this->form->email,
+            "lastname" => $this->form->lastname,
+            "phone" => $this->form->phone
+        ];
+
+        if (!empty($new_password)) {
+            $update_data["password"] = password_hash($new_password, PASSWORD_DEFAULT);
+        }
+
+        App::getDB()->update("users", $update_data, [
+            "id_users" => $user_id
+        ]);
+
+        App::getMessages()->addMessage(new Message('Dane zostały zaktualizowane.', Message::INFO));
+    } catch (\PDOException $e) {
+        App::getMessages()->addMessage(new Message('Błąd podczas zapisywania danych: ' . $e->getMessage(), Message::ERROR));
+    }
+
+    header("Location: profile");
+    exit();
+}
+
 }

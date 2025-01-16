@@ -42,7 +42,6 @@ class HelloCtrl {
             ]);
         }
 
-        // Przekazanie zmiennych do widoku
         App::getSmarty()->assign('user_logged_in', $user_logged_in);
         App::getSmarty()->assign('user_name', $user_name);
         App::getSmarty()->assign('user_is_admin', $user_is_admin);

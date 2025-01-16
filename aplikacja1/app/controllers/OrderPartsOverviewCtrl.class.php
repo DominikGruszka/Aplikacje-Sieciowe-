@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace app\controllers;
 
@@ -28,16 +28,22 @@ class OrderPartsOverviewCtrl {
         }
 
         try {
-            // Pobranie danych z tabeli `Parts`
             $parts = App::getDB()->select("parts", [
-                "id_part",
-                "part_name",
-                "serial_number",
-                "quantity",
-                "notatka",
-                "part_price",
-                "order_status",
-                "total_amount" => App::getDB()->raw("quantity * part_price")
+                "[>]reports" => ["report_id" => "id_reports"],
+                "[>]vehicles" => ["reports.vehicle_id" => "id"]
+            ], [
+                "parts.id_part",
+                "parts.part_name",
+                "parts.serial_number",
+                "parts.quantity",
+                "parts.notatka",
+                "parts.part_price",
+                "parts.order_status",
+                "total_amount" => App::getDB()->raw("parts.quantity * parts.part_price"),
+                "vehicles.brand",
+                "vehicles.model"
+            ], [
+                "ORDER" => ["parts.id_part" => "DESC"] 
             ]);
 
             // Przekazanie danych do widoku
@@ -67,7 +73,7 @@ class OrderPartsOverviewCtrl {
         }
 
         try {
-            // Aktualizacja danych w tabeli `Parts`
+            // Aktualizacja danych w tabeli `parts`
             App::getDB()->update("parts", [
                 "part_price" => $part_price,
                 "order_status" => $order_status,
@@ -80,4 +86,3 @@ class OrderPartsOverviewCtrl {
         }
     }
 }
-

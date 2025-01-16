@@ -105,6 +105,17 @@ class VehiclesListCtrl {
             return;
         }
 
+        // Dodana walidacja
+        if (!ctype_digit($production_year) || strlen($production_year) !== 4) {
+            App::getMessages()->addMessage(new Message('Rok produkcji musi składać się z dokładnie 4 cyfr.', Message::ERROR));
+            return;
+        }
+
+        if (!ctype_alnum($vin) || strlen($vin) !== 17) {
+            App::getMessages()->addMessage(new Message('VIN musi składać się z dokładnie 17 znaków.', Message::ERROR));
+            return;
+        }
+
         try {
             App::getDB()->update("vehicles", [
                 "brand" => $brand,
@@ -113,17 +124,16 @@ class VehiclesListCtrl {
                 "vin" => $vin
             ], ["id" => $vehicle_id]);
 
-          // Sprawdzenie, czy istnieje raport dla tego pojazdu
+            // Sprawdzenie, czy istnieje raport dla tego pojazdu
             $reportExists = App::getDB()->has("reports", ["vehicle_id" => $vehicle_id]);
 
             if ($reportExists) {
-                
-              // Aktualizacja istniejącego raportu
+                // Aktualizacja istniejącego raportu
                 App::getDB()->update("reports", [
                     "description" => $description
                 ], ["vehicle_id" => $vehicle_id]);
             } else {
-              // Tworzenie nowego raportu
+                // Tworzenie nowego raportu
                 App::getDB()->insert("reports", [
                     "vehicle_id" => $vehicle_id,
                     "description" => $description,

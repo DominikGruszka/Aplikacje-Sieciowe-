@@ -23,20 +23,21 @@
                     <td>{$vehicle.lastname|escape}</td>
                     <td>{$vehicle.brand|escape}</td>
                     <td>{$vehicle.model|escape}</td>
+                    
                     <td>
-    <form method="post" action="{$conf->action_root}settleVehicles">
-        <select name="settled_status_{$vehicle.id}">
-            <option value="TAK" {if $vehicle.settled == 'TAK'}selected{/if}>TAK</option>
-            <option value="NIE" {if $vehicle.settled == 'NIE'}selected{/if}>NIE</option>
-        </select>
-        <input type="hidden" name="vehicle_id" value="{$vehicle.id}">
-        <button type="submit" class="pure-button pure-button-primary">Zapisz</button>
-    </form>
-</td>
+                        <form method="post" action="{$conf->action_root}settleVehicles">
+                            <select name="settled_status_{$vehicle.id}">
+                                <option value="TAK" {if $vehicle.settled == 'TAK'}selected{/if}>TAK</option>
+                                <option value="NIE" {if $vehicle.settled == 'NIE'}selected{/if}>NIE</option>
+                            </select>
+                            <input type="hidden" name="vehicle_id" value="{$vehicle.id}">
+                            <button type="submit" class="pure-button pure-button-primary">Zapisz</button>
+                        </form>
+                    </td>
 
                     <td>
-    <a href="{$conf->action_root}finalizeSettlement?vehicle_id={$vehicle.id}" class="pure-button pure-button-primary">Rozlicz pojazd</a>
-</td>
+                        <a href="{$conf->action_root}finalizeSettlement?vehicle_id={$vehicle.id}" class="pure-button pure-button-primary">Rozlicz pojazd</a>
+                    </td>
                 </tr>
                 {/foreach}
             </tbody>

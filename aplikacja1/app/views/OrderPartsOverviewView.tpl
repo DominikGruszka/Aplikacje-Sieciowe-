@@ -10,6 +10,8 @@
         <table class="pure-table">
             <thead>
                 <tr>
+                    <th>Marka pojazdu</th>
+                    <th>Model pojazdu</th>
                     <th>Nazwa części</th>
                     <th>Numer seryjny</th>
                     <th>Ilość</th>
@@ -23,6 +25,8 @@
             <tbody>
                 {foreach from=$parts item=part}
                 <tr>
+                    <td>{$part.brand|escape}</td>
+                    <td>{$part.model|escape}</td>
                     <td>{$part.part_name|escape}</td>
                     <td>{$part.serial_number|escape}</td>
                     <td>{$part.quantity}</td>
@@ -39,6 +43,7 @@
                         </select>
                     </td>
                     <td>{$part.total_amount|number_format:2} PLN</td>
+                    
                     <td>
                         <input type="hidden" name="part_id" value="{$part.id_part}">
                         <button type="submit" name="edit_part" class="pure-button pure-button-primary">Zapisz</button>

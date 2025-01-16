@@ -67,9 +67,9 @@
                             <button type="submit" class="pure-button pure-button-primary">Edytuj</button>
                         </form>
                         <form method="get" action="{$conf->action_root}partsDemand">
-    <input type="hidden" name="vehicle_id" value="{$vehicle.vehicle_id}">
-    <button type="submit" class="pure-button pure-button-secondary">Zamów Części</button>
-</form>
+                            <input type="hidden" name="vehicle_id" value="{$vehicle.vehicle_id}">
+                            <button type="submit" class="pure-button pure-button-secondary">Zamów Części</button>
+                        </form>
                     </td>
                     {/if}
                     

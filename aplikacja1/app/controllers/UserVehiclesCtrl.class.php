@@ -28,7 +28,6 @@ class UserVehiclesCtrl {
 
         $edit_vehicle = null;
 
-        // Obsługa żądań POST (usunięcie, edycja)
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['delete_vehicle_id'])) {
                 $this->deleteVehicle();
@@ -116,13 +115,27 @@ class UserVehiclesCtrl {
             return;
         }
 
+        // Walidacja roku produkcji (4 cyfry)
+        if (!preg_match('/^\d{4}$/', $production_year)) {
+            App::getMessages()->addMessage(new Message('Rok produkcji musi składać się z dokładnie 4 cyfr.', Message::ERROR));
+            return;
+        }
+
+        // Walidacja numeru VIN (17 znaków)
+        if (strlen($vin) !== 17) {
+            App::getMessages()->addMessage(new Message('Numer VIN musi składać się z dokładnie 17 znaków.', Message::ERROR));
+            return;
+        }
+
         try {
             App::getDB()->update("vehicles", [
                 "brand" => $brand,
                 "model" => $model,
                 "production_year" => $production_year,
                 "vin" => $vin
-            ], ["id" => $vehicle_id]);
+            ], [
+                "id" => $vehicle_id
+            ]);
 
             App::getMessages()->addMessage(new Message('Dane pojazdu zostały zaktualizowane.', Message::INFO));
         } catch (\PDOException $e) {

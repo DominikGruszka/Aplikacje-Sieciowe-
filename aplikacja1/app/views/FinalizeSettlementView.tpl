@@ -5,8 +5,10 @@
 {block name="content"}
 <section id="finalize-settlement" class="finalize-settlement-section">
     <div class="container">
+        
         <h1>Rozliczenie Pojazdu</h1>
         <h2>Dane Pojazdu</h2>
+        
         <p><strong>Marka:</strong> {$vehicle.brand|escape}</p>
         <p><strong>Model:</strong> {$vehicle.model|escape}</p>
         <p><strong>Właściciel:</strong> {$vehicle.lastname|escape}</p>

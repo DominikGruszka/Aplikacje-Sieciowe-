@@ -14,7 +14,7 @@ class AdminCtrl {
         $user_role = SessionUtils::load('user_role', true);
 
         // Sprawdzenie uprawnień administratora
-        if ($user_role !== 'administrator') {
+        if (!$user_logged_in || $user_role !== 'administrator') {
             App::getMessages()->addMessage(new Message('Brak uprawnień do panelu administratora.', Message::ERROR));
             header("Location: hello");
             exit();
@@ -25,24 +25,39 @@ class AdminCtrl {
         App::getSmarty()->assign('user_name', $user_name);
         App::getSmarty()->assign('user_is_admin', $user_role === 'administrator');
 
+        // Pobranie ról i filtrowanie
+        $selected_role = getFromRequest('role_filter');
+        App::getSmarty()->assign('selected_role', $selected_role);
+
         try {
-            // Pobranie użytkowników i ról
-            $users = App::getDB()->select("users", [
+            // Pobranie ról do wyboru
+            $roles = App::getDB()->select("roles", ["id_role", "role_name", "status"], [
+                "status" => "aktywny"
+            ]);
+
+            // Filtrowanie użytkowników według wybranej roli
+            $users_query = [
                 "[>]users_roles" => ["id_users" => "user_id"],
                 "[>]roles" => ["users_roles.role_id" => "id_role"]
-            ], [
+            ];
+
+            $users_columns = [
                 "users.id_users",
                 "users.login",
                 "users.email",
                 "users.lastname",
                 "roles.role_name",
-                "users_roles.id(user_role_id)", 
+                "users_roles.id(user_role_id)",
                 "users_roles.created_at"
-            ]);
+            ];
 
-            $roles = App::getDB()->select("roles", ["id_role", "role_name", "status"], [
-                "status" => "aktywny"
-            ]);
+            if (!empty($selected_role)) {
+                $users_where = ["roles.role_name" => $selected_role];
+            } else {
+                $users_where = [];
+            }
+
+            $users = App::getDB()->select("users", $users_query, $users_columns, $users_where);
 
             App::getSmarty()->assign('users', $users);
             App::getSmarty()->assign('roles', $roles);

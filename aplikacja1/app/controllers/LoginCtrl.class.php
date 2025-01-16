@@ -1,7 +1,6 @@
 <?php
 namespace app\controllers;
 
-use app\forms\LoginForm;
 use core\App;
 use core\Message;
 use core\SessionUtils;
@@ -10,81 +9,82 @@ class LoginCtrl {
     private $form;
 
     public function __construct() {
-        $this->form = new LoginForm();
-    }
-
-    public function validate() {
-        $this->form->login = getFromRequest('login');
-        $this->form->pass = getFromRequest('pass');
-
-        if (!isset($this->form->login)) return false;
-
-        if (empty($this->form->login)) {
-            App::getMessages()->addMessage(new Message('Nie podano loginu', Message::ERROR));
-        }
-        if (empty($this->form->pass)) {
-            App::getMessages()->addMessage(new Message('Nie podano hasła', Message::ERROR));
-        }
-
-        if (App::getMessages()->isError()) return false;
-
-        $db = App::getDB();
-        try {
-            // Pobierz dane użytkownika
-            $user = $db->get("users", ["id_users", "login", "password"], [
-                "login" => $this->form->login
-            ]);
-
-            if (!$user || $this->form->pass !== $user['password']) {
-                App::getMessages()->addMessage(new Message('Niepoprawny login lub hasło', Message::ERROR));
-                return false;
-            }
-
-            // Pobierz rolę użytkownika
-            $role = $db->get("users_roles", [
-                "[>]roles" => ["role_id" => "id_role"]
-            ], [
-                "roles.role_name"
-            ], [
-                "user_id" => $user['id_users']
-            ]);
-
-            // Zapisz dane do sesji
-            SessionUtils::store('user_logged_in', true);
-            SessionUtils::store('user_name', $user['login']);
-            SessionUtils::store('user_id', $user['id_users']);
-            SessionUtils::store('user_role', $role['role_name'] ?? null); // Domyślnie null, jeśli brak roli
-
-            return true;
-
-        } catch (\Exception $e) {
-            App::getMessages()->addMessage(new Message('Błąd połączenia z bazą danych', Message::ERROR));
-            return false;
-        }
-    }
-
-    public function action_loginShow() {
-        $this->generateView();
+        $this->form = new \stdClass();
     }
 
     public function action_login() {
-        if ($this->validate()) {
-            App::getMessages()->addMessage(new Message('Poprawnie zalogowano do systemu', Message::INFO));
-            header("Location: hello");
-            exit();
-        } else {
-            $this->generateView();
+        $this->form->login = getFromRequest('login');
+        $this->form->pass = getFromRequest('pass');
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!$this->validateLoginForm()) {
+                App::getSmarty()->assign('form', $this->form);
+                App::getSmarty()->display('LoginView.tpl');
+                return;
+            }
+
+            try {
+                // Pobranie użytkownika z bazy
+                $user = App::getDB()->get("users", "*", [
+                    "login" => $this->form->login
+                ]);
+
+                if (!$user) {
+                    App::getMessages()->addMessage(new Message('Nie ma takiego użytkownika.', Message::ERROR));
+                    App::getSmarty()->assign('form', $this->form);
+                    App::getSmarty()->display('LoginView.tpl');
+                    return;
+                }
+
+                // Weryfikacja hasła
+                if (!password_verify($this->form->pass, $user['password'])) {
+                    App::getMessages()->addMessage(new Message('Nieprawidłowe hasło.', Message::ERROR));
+                    App::getSmarty()->assign('form', $this->form);
+                    App::getSmarty()->display('LoginView.tpl');
+                    return;
+                }
+
+                // Zapis danych użytkownika w sesji
+                SessionUtils::store('user_id', $user['id_users']);
+                SessionUtils::store('user_name', $user['login']);
+                SessionUtils::store('user_logged_in', true);
+
+                // Pobierz rolę użytkownika
+                try {
+                    $user_role = App::getDB()->get("users_roles", [
+                        "[>]roles" => ["role_id" => "id_role"]
+                    ], "roles.role_name", [
+                        "users_roles.user_id" => $user['id_users']
+                    ]);
+
+                    SessionUtils::store('user_role', $user_role ? $user_role : 'brak roli');
+                } catch (\PDOException $e) {
+                    App::getMessages()->addMessage(new Message('Błąd podczas przypisywania roli użytkownika.', Message::ERROR));
+                }
+
+                header("Location: hello");
+                exit();
+            } catch (\PDOException $e) {
+                App::getMessages()->addMessage(new Message('Błąd podczas logowania. Spróbuj ponownie później.', Message::ERROR));
+            }
         }
-    }
 
-    public function action_logout() {
-        SessionUtils::clear();
-        header("Location: hello");
-        exit();
-    }
-
-    public function generateView() {
+        // Wyświetl formularz logowania bez komunikatów o błędach
         App::getSmarty()->assign('form', $this->form);
         App::getSmarty()->display('LoginView.tpl');
+    }
+
+    private function validateLoginForm() {
+        if (empty($this->form->login)) {
+            App::getMessages()->addMessage(new Message('Login nie może być pusty.', Message::ERROR));
+            return false;
+        }
+
+        if (empty($this->form->pass)) {
+            App::getMessages()->addMessage(new Message('Hasło nie może być puste.', Message::ERROR));
+            return false;
+        }
+
+        return true;
     }
 }

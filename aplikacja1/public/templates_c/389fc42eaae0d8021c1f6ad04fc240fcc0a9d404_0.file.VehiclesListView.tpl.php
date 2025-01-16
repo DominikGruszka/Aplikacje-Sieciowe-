@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.4, created on 2025-01-05 16:01:11
+/* Smarty version 4.3.4, created on 2025-01-16 13:06:11
   from 'C:\xampp\htdocs\aplikacja1\app\views\VehiclesListView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.4',
-  'unifunc' => 'content_677a9eb719c177_57536672',
+  'unifunc' => 'content_6788f6338d7972_14377874',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '389fc42eaae0d8021c1f6ad04fc240fcc0a9d404' => 
     array (
       0 => 'C:\\xampp\\htdocs\\aplikacja1\\app\\views\\VehiclesListView.tpl',
-      1 => 1736089264,
+      1 => 1737029131,
       2 => 'file',
     ),
   ),
@@ -20,30 +20,30 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_677a9eb719c177_57536672 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6788f6338d7972_14377874 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_97154276677a9eb709e2f3_40489591', "title");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_12731441226788f632f059e5_86002302', "title");
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1634438431677a9eb70b1b74_97881954', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1220651406788f632f19262_12717112', "content");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "main.tpl");
 }
 /* {block "title"} */
-class Block_97154276677a9eb709e2f3_40489591 extends Smarty_Internal_Block
+class Block_12731441226788f632f059e5_86002302 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'title' => 
   array (
-    0 => 'Block_97154276677a9eb709e2f3_40489591',
+    0 => 'Block_12731441226788f632f059e5_86002302',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -53,12 +53,12 @@ Lista zarejestrowanych pojazdów<?php
 }
 /* {/block "title"} */
 /* {block "content"} */
-class Block_1634438431677a9eb70b1b74_97881954 extends Smarty_Internal_Block
+class Block_1220651406788f632f19262_12717112 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_1634438431677a9eb70b1b74_97881954',
+    0 => 'Block_1220651406788f632f19262_12717112',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

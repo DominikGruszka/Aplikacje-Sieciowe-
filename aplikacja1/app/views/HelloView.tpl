@@ -3,10 +3,11 @@
 {block name="title"}Strona główna{/block}
 
 {block name="content"}
+    
     <!-- Pierwsza sekcja - HOME -->
     <section id="home" class="hero">
         <div class="container">
-            <h1>Witamy w naszym warsztacie samochodowym</h1>
+            <h1>Witamy w naszym serwisie samochodowym</h1>
                 <p>Zadbaj o swoje auto z pomocą najlepszych specjalistów w branży.</p>
             {if isset($user_logged_in) && $user_logged_in}
                 <p>Witaj, {$user_name}! Cieszymy się, że jesteś z nami.</p>

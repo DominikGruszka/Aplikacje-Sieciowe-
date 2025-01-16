@@ -26,12 +26,9 @@ class PartsDemandCtrl {
             exit();
         }
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST['add_part'])) {
-                $this->addPart($vehicle_id);
-            } elseif (isset($_POST['edit_part'])) {
-                $this->editPart();
-            }
+        // Obsługa dodawania części
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_part'])) {
+            $this->addPart($vehicle_id);
         }
 
         try {
@@ -50,11 +47,6 @@ class PartsDemandCtrl {
             ], ["id" => $vehicle_id]);
 
             $parts = App::getDB()->select("parts", "*", ["report_id" => $report_id]);
-
-            // Dodanie klucza `edit_mode` do każdego elementu
-            foreach ($parts as &$part) {
-                $part['edit_mode'] = false;
-            }
 
             App::getSmarty()->assign('vehicle', $vehicle);
             App::getSmarty()->assign('parts', $parts);
@@ -110,53 +102,24 @@ class PartsDemandCtrl {
             }
         }
     }
-        public function action_deletePart() {
-            $part_id = getFromRequest('part_id');
 
-            if (!$part_id) {
-                App::getMessages()->addMessage(new Message('Nie wybrano części do usunięcia.', Message::ERROR));
-                header("Location: workshopPanel");
-                exit();
-            }
-
-            try {
-                App::getDB()->delete("parts", ["id_part" => $part_id]);
-                App::getMessages()->addMessage(new Message('Część została usunięta pomyślnie.', Message::INFO));
-            } catch (\PDOException $e) {
-                App::getMessages()->addMessage(new Message('Błąd podczas usuwania części.', Message::ERROR));
-            }
-
-            header("Location: {$_SERVER['HTTP_REFERER']}");
-            exit();
-        }
-    private function editPart() {
+    public function action_deletePart() {
         $part_id = getFromRequest('part_id');
-        $part_name = trim(getFromRequest("part_name_{$part_id}"));
-        $serial_number = trim(getFromRequest("serial_number_{$part_id}"));
-        $quantity = trim(getFromRequest("quantity_{$part_id}"));
-        $note = trim(getFromRequest("note_{$part_id}"));
 
-        if (empty($part_name) || empty($serial_number) || empty($quantity)) {
-            App::getMessages()->addMessage(new Message('Wszystkie wymagane pola muszą być wypełnione.', Message::ERROR));
-            return;
-        }
-
-        if (!is_numeric($quantity) || $quantity <= 0) {
-            App::getMessages()->addMessage(new Message('Ilość musi być liczbą większą od zera.', Message::ERROR));
-            return;
+        if (!$part_id) {
+            App::getMessages()->addMessage(new Message('Nie wybrano części do usunięcia.', Message::ERROR));
+            header("Location: workshopPanel");
+            exit();
         }
 
         try {
-            App::getDB()->update("parts", [
-                "part_name" => $part_name,
-                "serial_number" => $serial_number,
-                "quantity" => $quantity,
-                "notatka" => $note ?: null
-            ], ["id_part" => $part_id]);
-
-            App::getMessages()->addMessage(new Message('Część została zaktualizowana pomyślnie.', Message::INFO));
+            App::getDB()->delete("parts", ["id_part" => $part_id]);
+            App::getMessages()->addMessage(new Message('Część została usunięta pomyślnie.', Message::INFO));
         } catch (\PDOException $e) {
-            App::getMessages()->addMessage(new Message('Błąd podczas aktualizacji części.', Message::ERROR));
+            App::getMessages()->addMessage(new Message('Błąd podczas usuwania części.', Message::ERROR));
         }
+
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+        exit();
     }
 }

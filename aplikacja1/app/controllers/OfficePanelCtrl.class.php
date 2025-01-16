@@ -24,7 +24,6 @@ class OfficePanelCtrl {
         App::getSmarty()->assign('user_logged_in', $user_logged_in);
         App::getSmarty()->assign('user_name', $user_name);
 
-        // Wyświetlenie widoku panelu biurowego
         App::getSmarty()->display('OfficePanelView.tpl');
     }
 }

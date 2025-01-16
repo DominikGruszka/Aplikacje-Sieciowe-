@@ -9,7 +9,7 @@ class LogoutCtrl {
      
    // Niszczenie sesji, aby wylogować użytkownika
     SessionUtils::store('user_logged_in', false); 
-    session_destroy(); // Zakończenie sesji
+    session_destroy(); 
 
     header("Location: hello");
     exit();

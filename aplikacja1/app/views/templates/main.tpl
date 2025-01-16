@@ -12,10 +12,11 @@
     <!-- Menu -->
    <header>
         <nav class="navbar">
-            <!-- Logo -->
+            <!-- Nazwa firmy -->
             <div class="logo">
-                <img src="logo.jpg" alt="Logo" />
+                <li><a href="{$conf->action_root}home"><span class="ride">Ride</span><span class="flow">FLOW</span></a></li>
             </div>
+
 
             <!-- Centralne menu -->
             <ul class="center-menu">
@@ -32,9 +33,11 @@
             <a href="#">{$user_name}</a>
             <ul class="dropdown">
                 <li><a href="{$conf->action_root}profile">Profil</a></li>
-                <li><a href="{$conf->action_root}vehicles">Zgłoszenie pojazdu</a></li>
+                <li><a href="{$conf->action_root}vehicles">Zgłoś pojazd</a></li>
+                <li><a href="{$conf->action_root}vehiclesList">Mój pojazd</a></li>
                 {if isset($user_is_admin) && $user_is_admin}
                     <li><a href="{$conf->action_root}adminPanel">Panel Administratora</a></li>
+                    <li><a href="{$conf->action_root}roles">Dodaj role</a></li>
                 {/if}
                 {if isset($user_is_office_worker) && $user_is_office_worker}
                     <li><a href="{$conf->action_root}officePanel">Panel Biurowy</a></li>
@@ -45,15 +48,11 @@
                 <li><a href="{$conf->action_root}logout">Wyloguj się</a></li>
             </ul>
         </li>
-    {else}
-        <li class="login"><a href="{$conf->action_root}login">Zaloguj się</a></li>
-    {/if}
-</ul>
-
-
-
-
-        </nav>
+        {else}
+            <li class="login"><a href="{$conf->action_root}login">Zaloguj się</a></li>
+         {/if}
+        </ul>
+      </nav>
     </header>
 
     <!-- Dynamiczna struktura  -->
@@ -75,7 +74,7 @@
         {/if}
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (stopka) -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 RideFlow. Wszystkie prawa zastrzeżone.</p>

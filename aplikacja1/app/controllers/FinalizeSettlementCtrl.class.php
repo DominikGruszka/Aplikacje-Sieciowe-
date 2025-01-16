@@ -8,6 +8,10 @@ use core\SessionUtils;
 
 class FinalizeSettlementCtrl {
     public function action_finalizeSettlement() {
+        // Pobranie danych użytkownika
+        $user_logged_in = SessionUtils::load('user_logged_in', true);
+        $user_name = SessionUtils::load('user_name', true);
+
         $vehicle_id = getFromRequest('vehicle_id');
 
         if (!$vehicle_id) {
@@ -63,6 +67,8 @@ class FinalizeSettlementCtrl {
             App::getSmarty()->assign('parts', $parts);
             App::getSmarty()->assign('total_sum', $total_sum);
             App::getSmarty()->assign('report_id', $report_id);
+            App::getSmarty()->assign('user_logged_in', $user_logged_in); 
+            App::getSmarty()->assign('user_name', $user_name);
         } catch (\Exception $e) {
             App::getMessages()->addMessage(new Message('Błąd podczas ładowania danych: ' . $e->getMessage(), Message::ERROR));
             header("Location: settleVehicles");
@@ -71,6 +77,7 @@ class FinalizeSettlementCtrl {
 
         App::getSmarty()->display('FinalizeSettlementView.tpl');
     }
+
 
     private function updateLabor() {
         $part_id = getFromRequest('part_id');

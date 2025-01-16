@@ -11,6 +11,9 @@ Utils::addRoute('hello',                'HelloCtrl');
 // Logowanie do systemu
 Utils::addRoute('login',                'LoginCtrl');
 
+// Nie pamiętam hasła 
+Utils::addRoute('passwordReset',        'PasswordCtrl');
+
 // Wylogowanie z systemu
 Utils::addRoute('logout',               'LogoutCtrl');
 
@@ -22,6 +25,9 @@ Utils::addRoute('rentals',              'RentalsCtrl');
 
 // Wyświetlenie profilu użytkownika
 Utils::addRoute('profile',              'ProfileCtrl');
+
+// Zapisywanie zaktualizowanych danych użytkownika 
+Utils::addRoute('profileSave',          'ProfileCtrl');
 
 // Wyświetlenie formularza do rejestracji pojazdu
 Utils::addRoute('vehicles',             'VehiclesCtrl');
@@ -41,6 +47,9 @@ Utils::addRoute('removeRole',           'AdminCtrl');
 // Możliwość usunięcia użytkowników przez administratora
 Utils::addRoute('deleteUser',           'AdminCtrl');
 
+// Dodawanie nowej roli przez Administratora
+Utils::addRoute('roles',                'RolesCtrl');
+
 // Wyświetlanie pojazdów użytkowników przez administratora 
 Utils::addRoute('userVehicles',         'UserVehiclesCtrl');
 
@@ -54,7 +63,7 @@ Utils::addRoute('orderPartsOverview',   'OrderPartsOverviewCtrl');
 Utils::addRoute('settleVehicles',       'SettleVehiclesCtrl');
 
 // Panel finalizacji + otrzymania całkowitej kowty za naprawę 
-Utils::addRoute('finalizeSettlement', 'FinalizeSettlementCtrl');
+Utils::addRoute('finalizeSettlement',   'FinalizeSettlementCtrl');
 
 // Panel warsztatowy dla użytkowników z rolą pracownik_warsztatowy
 Utils::addRoute('workshopPanel',        'WorkshopPanelCtrl');
@@ -67,9 +76,7 @@ Utils::addRoute('deletePart',           'PartsDemandCtrl');
 
 
 
-// Trasy biurowe
-//Utils::addRoute('biuro',                'OfficeCtrl');
-//Utils::addRoute('biuro/zamowienia',     'OfficeCtrl');
+
 
 
 

@@ -116,6 +116,18 @@ class WorkshopPanelCtrl {
             return;
         }
 
+        // Walidacja roku produkcji (4 cyfry)
+        if (!preg_match('/^\d{4}$/', $production_year)) {
+            App::getMessages()->addMessage(new Message('Rok produkcji musi składać się z dokładnie 4 cyfr.', Message::ERROR));
+            return;
+        }
+
+        // Walidacja numeru VIN (17 znaków)
+        if (strlen($vin) !== 17) {
+            App::getMessages()->addMessage(new Message('Numer VIN musi składać się z dokładnie 17 znaków.', Message::ERROR));
+            return;
+        }
+
         try {
             App::getDB()->update("vehicles", [
                 "brand" => $brand,
